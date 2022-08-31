@@ -1,14 +1,11 @@
 ### Mongo JSON Directory
-***  
 ```mongo-JSON-dir``` provides a simple, easy-to-use REST interface to manage JSON data in the MongoDB. 
 
 ## Records ##
 A Record is a basic unit of information which only contains a chunk of JSON data and metadata.
-***
 
 ## Directories ##
 A Directory is a unit of the user access. Each directory contains a set of Records or another directory as its child.
-***
 <details>
 <summary><b>Privacy</b></summary>
 All folders are private and require ACCESS_KEY or MASTER_KEY to grant access. <br/>
@@ -36,7 +33,6 @@ Logging in with different accounts show different root Dir start
 </details>
 
 ## Features ##
-***
 **APIs**
 - Create Folder
 - Create Child Folder
@@ -53,7 +49,6 @@ Logging in with different accounts show different root Dir start
 
 
 ## Installation
-***
 Prerequisite
 * Docker
 * Docker compose
@@ -67,7 +62,6 @@ docker build -t {package_name} .
 ```
 
 ##Documentation
-***
 API documentation is here.  
   
 ```json-data-store``` provides the following objects:
@@ -76,7 +70,6 @@ API documentation is here.
 ###Views
 
 ##Local Development Setup
-***
 Prerequisites
 * Maven
 * JDK 11
