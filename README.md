@@ -2,7 +2,7 @@
 [![Publish](https://github.com/JavaUnit/AutoParams/actions/workflows/publish.yml/badge.svg)](https://github.com/JavaUnit/AutoParams/actions/workflows/publish.yml)
 ![license](https://img.shields.io/badge/license-MIT-blue)
 ![java17](https://img.shields.io/badge/java-17-brightgreen)
-![mongodb](https://img.shields.io/badge/mongoDB-v6.0-brightgreen)
+![mongodb](https://img.shields.io/badge/MongoDB-v6.0-brightgreen)
 
 ### Mongo JSON Directory
 ```mongo-JSON-dir``` provides a simple, easy-to-use REST interface to manage JSON data in the MongoDB. 
