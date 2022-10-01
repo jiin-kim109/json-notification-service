@@ -2,11 +2,13 @@ package com.jiin.jsondirectory.service;
 
 import com.jiin.jsondirectory.model.Record;
 import com.jiin.jsondirectory.model.RecordId;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class JsonRecordService implements RecordService{
 
     @Override
