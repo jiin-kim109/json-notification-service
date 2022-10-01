@@ -1,7 +1,7 @@
 [![CI](https://github.com/jiin-kim109/mongo-JSON-directory/actions/workflows/github_ci.yml/badge.svg)](https://github.com/jiin-kim109/mongo-JSON-directory/actions/workflows/github_ci.yml)
 [![Publish](https://github.com/jiin-kim109/mongo-JSON-directory/actions/workflows/publish.yml/badge.svg)](https://github.com/jiin-kim109/mongo-JSON-directory/actions/workflows/publish.yml)
-![license](https://img.shields.io/badge/license-MIT-blue)
-![java17](https://img.shields.io/badge/java-17-brightgreen)
+![license](https://img.shields.io/badge/License-MIT-blue)
+![java17](https://img.shields.io/badge/Java-17-brightgreen)
 ![mongodb](https://img.shields.io/badge/MongoDB-v6.0-brightgreen) 
 
 ### Mongo JSON Directory
