@@ -15,7 +15,7 @@ on:
 jobs:
   test_and_build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: read
       packages: write
@@ -30,7 +30,7 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build with Maven
+    - name: Run Tests and Build with Maven
       run: mvn -B package --file pom.xml
 
     #- name: Publish to GitHub Packages Apache Maven
