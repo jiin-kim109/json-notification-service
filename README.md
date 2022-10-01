@@ -7,10 +7,13 @@
 ### Mongo JSON Directory
 ```mongo-JSON-dir``` provides a simple, easy-to-use REST interface to manage JSON data in the MongoDB. 
 
-## Records ##
+## Overview
+<img src="https://i.postimg.cc/tJDKLbYr/json.png" />
+
+## Records
 A Record is a basic unit of information which only contains a chunk of JSON data and metadata.
 
-## Directories ##
+## Directories
 A Directory is a unit of the user access. Each directory contains a set of Records or another directory as its child.
 <details>
 <summary><b>Privacy</b></summary>
