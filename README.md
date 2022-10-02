@@ -5,57 +5,52 @@
 ![mongodb](https://img.shields.io/badge/MongoDB-v6.0-brightgreen) 
 
 ### Mongo JSON Directory
-```mongo-JSON-dir``` provides a simple, easy-to-use REST interface to manage JSON data in the MongoDB. 
+```mongo-JSON-dir``` sits on the top of MongoDB, provides a REST API to securely and effectively manage JSON data. 
 
-## Overview
 <img src="https://i.postimg.cc/tJDKLbYr/json.png" />
 
-## Records
-A Record is a basic unit of information which only contains a chunk of JSON data and metadata.
+**Access Control**
+Each record in a directory has ACCESS_KEY (=JWT token) to grant access for viewing.
 
-## Directories
-A Directory is a unit of the user access. Each directory contains a set of Records or another directory as its child.
-<details>
-<summary><b>Privacy</b></summary>
-All folders are private and require ACCESS_KEY or MASTER_KEY to grant access. <br/>
-Parent folder’s ACCESS_KEY also grants access to its child folders.
-</details>
-<details>
-<summary><b>User Access</b></summary>
-ID or Path based accessor <br/>
-Direct Access → Base_URL/f/<Folder_ID> or Base_URL/r/<Record_ID>   <br/>
-Path Access → Parent_Folder/Child_Folder/…/Record_Name
-</details>
-<details>
-<summary><b>Metadata</b></summary>
-record id prefix      <br/>
-hide/show folder or record metadata
-</details>
-<details>
-<summary><b>Users</b></summary>
-Admin and user accounts are used for browsing Admin View UI. <br/>
-Each User is attached to a folder. That means each User is granted an ACCESS_KEY but multiple Folders in the same level cannot be granted.
-</details>
-<details>
-<summary><b>Admin View UI</b></summary>
-Logging in with different accounts show different root Dir start
-</details>
+Each directory has either MASTER_KEY and ACCESS_KEY for granting access. Directories with MASTER_KEY requires users to authenticate via ID/PW to grant the access token. The MASTER_KEY allows users to create/view/modify directory settings and its belongings. This is useful when a user wants to grant permissions to other users only for a subset of a directory.
+
+The ACCESS_KEYs can be set to a short live and be automatically renewed for security purposes. The MASTER_KEYs are permanent so beware of a security risk. 
+
+ROOT_KEY is only for a systemic use and can be set via environment variables. Do not use ROOT_KEY for general use cases.
+
+There are two types of users.
+
+Users with ID/PW for a MASTER_KEY is considered as a “Owner” of a directory. If a sub-directory is set to have a MASTER_KEY, then users with the credentials are considered as “Sub-owners”
+
+Users with a ACCESS_KEY are considered as a “Visitor” and only allowed to perform restricted actions on records/directories.
+
+**API**
+- Record API
+- Directory API
+
 
 ## Features ##
 **APIs**
-- Create Folder
-- Create Child Folder
-- Get list of Records and Folder metadata (e.g. ID, ACCESS_KEY)
-- Update Folder settings
-- Delete Folder
-- Create JSON Record within Folder
-- Get JSON Record via ID/Path
-- Update JSON Record via ID/Path
-- Delete JSON Record via ID/Path
-- Create an User (=attach ID/PW to a folder) (MASTER_KEY)
-- Get list of existing Users (=Folders’ ID/PW) (MASTER_KEY)
-- Delete an User (=detach ID/PW from a folder) (MASTER_KEY)
+- Create Directory
+- Create Sub-directory
+- Get list of Records and directories
+- Get metadata for a reocrd
+- Get metadata for a directory
+- Update Directory settings
+- Create a record with JSON payload
+- Delete a directory
+- Delete a record
 
+**APIs**
+- Create Directory
+- Create Sub-directory
+- Get list of Records and directories
+- Get metadata for a reocrd
+- Get metadata for a directory
+- Update Directory settings
+- Create a record with JSON payload
+- Delete a directory
+- Delete a record
 
 ## Installation
 Prerequisite
