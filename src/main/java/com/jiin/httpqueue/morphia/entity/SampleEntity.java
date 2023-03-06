@@ -1,4 +1,4 @@
-package com.jiin.jsondirectory.morphia.entity;
+package com.jiin.httpqueue.morphia.entity;
 
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;

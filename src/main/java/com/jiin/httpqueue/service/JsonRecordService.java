@@ -1,7 +1,7 @@
-package com.jiin.jsondirectory.service;
+package com.jiin.httpqueue.service;
 
-import com.jiin.jsondirectory.model.Record;
-import com.jiin.jsondirectory.model.RecordId;
+import com.jiin.httpqueue.model.Record;
+import com.jiin.httpqueue.model.RecordId;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.jiin.jsondirectory.model;
+package com.jiin.httpqueue.model;
 
 import lombok.Data;
 

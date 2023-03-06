@@ -1,4 +1,4 @@
-package com.jiin.jsondirectory.api.utils;
+package com.jiin.httpqueue.api.utils;
 
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -6,7 +6,7 @@ import org.springframework.util.MultiValueMap;
 
 public class MockApiRequestBuilder {
 
-    private static final String API_BASE_URL = "/api/v1";
+    private static final String API_BASE_URL = "/api";
 
     public static MockHttpServletRequestBuilder buildGetRequet(String endpoint) {
         return MockMvcRequestBuilders.get(API_BASE_URL + endpoint);

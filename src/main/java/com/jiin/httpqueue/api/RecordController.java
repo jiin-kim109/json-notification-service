@@ -1,9 +1,10 @@
-package com.jiin.jsondirectory.api;
+package com.jiin.httpqueue.api;
 
-import com.jiin.jsondirectory.model.RecordId;
-import com.jiin.jsondirectory.service.RecordService;
+import com.jiin.httpqueue.model.RecordId;
+import com.jiin.httpqueue.service.RecordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

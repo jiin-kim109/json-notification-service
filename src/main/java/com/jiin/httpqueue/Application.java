@@ -1,4 +1,4 @@
-package com.jiin.jsondirectory;
+package com.jiin.httpqueue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
