@@ -1,5 +1,6 @@
 package com.jiin.httpqueue.storage;
 
+import com.jiin.httpqueue.mongo.MongoTestConfig;
 import com.jiin.httpqueue.mongo.document.QueueEntity;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,13 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@AutoConfigureDataMongo
-@SpringBootTest
+@SpringBootTest(classes = MongoTestConfig.class)
 public class QueueRepositoryTest {
 
     @Autowired
