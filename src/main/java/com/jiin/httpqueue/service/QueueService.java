@@ -1,8 +1,8 @@
 package com.jiin.httpqueue.service;
 
-import com.jiin.httpqueue.model.QueueDto;
-import com.jiin.httpqueue.model.DocumentId;
-import com.jiin.httpqueue.model.QueueResponse;
+import com.jiin.httpqueue.pojo.QueueDto;
+import com.jiin.httpqueue.pojo.DocumentId;
+import com.jiin.httpqueue.pojo.QueueResponse;
 import com.jiin.httpqueue.mongo.document.QueueEntity;
 import com.jiin.httpqueue.storage.QueueRepository;
 import org.springframework.beans.factory.annotation.Autowired;

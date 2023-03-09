@@ -1,19 +1,17 @@
 package com.jiin.httpqueue.api;
 
-import com.jiin.httpqueue.model.DocumentId;
-import com.jiin.httpqueue.model.QueueDto;
+import com.jiin.httpqueue.pojo.DocumentId;
+import com.jiin.httpqueue.pojo.QueueDto;
 import com.jiin.httpqueue.service.QueueService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Log4j2
@@ -25,9 +23,9 @@ public class QueueController {
     private QueueService queueService;
 
     @PostMapping(value = "/api/queues")
-    public ResponseEntity createQueue(ServletWebRequest request) {
+    public ResponseEntity createQueue(@RequestBody @Valid QueueDto queueDto, ServletWebRequest request) {
         log.info("API Invoked: {}, timestamp: {}", "CreateQueue", LocalDateTime.now());
-        ResponseEntity<?> res = ResponseEntity.ok(queueService.createOne(QueueDto.builder().build()));
+        ResponseEntity<?> res = ResponseEntity.ok(queueService.createOne(queueDto));
         log.info("Successfully processed request");
         return res;
     }
