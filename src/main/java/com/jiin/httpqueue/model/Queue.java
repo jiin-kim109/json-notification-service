@@ -1,4 +1,4 @@
-package com.jiin.httpqueue.pojo;
+package com.jiin.httpqueue.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
-public class QueueDto {
+public class Queue {
 
     @NotNull
     private String queueName;

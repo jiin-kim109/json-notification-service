@@ -1,11 +1,11 @@
-package com.jiin.httpqueue.pojo;
+package com.jiin.httpqueue.model;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class MessageDto {
+public class Message {
 
     private String messageId;
 }

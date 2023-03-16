@@ -1,4 +1,4 @@
-package com.jiin.httpqueue.pojo;
+package com.jiin.httpqueue.model;
 
 import lombok.Data;
 
