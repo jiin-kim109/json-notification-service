@@ -9,7 +9,7 @@ public class ErrorResponseBuilder {
         ErrorResponse.Error errorBody = ErrorResponse.Error.builder()
                 .type(ErrorResponse.Error.ErrorType.Sender)
                 .code(ErrorResponse.Error.ErrorCode.InvalidActionName)
-                .message("Value for parameter Action is not valid \\r" +
+                .message("Value for parameter Action is not valid \r" +
                                 "Must be a valid action name"
                 )
                 .build();

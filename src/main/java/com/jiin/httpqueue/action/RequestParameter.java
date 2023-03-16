@@ -3,6 +3,7 @@ package com.jiin.httpqueue.action;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 @Builder
 public class RequestParameter {
 
+    @NotBlank
     private Actions actionName;
 
     private Map<String, String> parameters;

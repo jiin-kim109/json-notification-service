@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
@@ -31,56 +31,53 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.GET}, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity processActionRequest(@RequestParam MultiValueMap<String, String> body, ServletWebRequest request) {
+    public ResponseEntity processActionRequest(@RequestParam Map<String, String> body, ServletWebRequest request) {
         log.info("Received request: {}, timestamp: {}", body.toString(), LocalDateTime.now());
-        var parameters = body.toSingleValueMap();
-        var action = collectActionName(parameters);
-        ResponseEntity<?> res;
+        Optional<Actions> action = defineAction(body);
         if (action.isEmpty())
-            res = notValidActionResponse(request);
-        else {
-            RequestParameter requestParameter = RequestParameter.builder()
-                    .actionName(action.get())
-                    .attributeNames(collectAttributeNames(parameters))
-                    .attributeValues(collectAttributeValues(parameters))
-                    .parameters(filterNonAttributeParameters(parameters))
-                    .build();
-            res = ResponseEntity.ok(processAction(requestParameter,request));
-        }
+            return notValidActionResponse(request);
+
+        RequestParameter requestParameter = RequestParameter.builder()
+                .actionName(action.get())
+                .attributeNames(collectAttributeNames(body))
+                .attributeValues(collectAttributeValues(body))
+                .parameters(filterNonAttributeParameters(body))
+                .build();
+        ResponseEntity<?> res = ResponseEntity.ok(processAction(requestParameter,request));
         log.info("Successfully processed request");
         return res;
     }
 
-    private Optional<Actions> collectActionName(Map<String, String> parameters) {
+    private Optional<Actions> defineAction(Map<String, String> body) {
         for (Actions action : Actions.values()) {
-            if (action.toString().equals(parameters.get("Action")))
+            if (action.toString().equals(body.get("Action")))
                 return Optional.of(action);
         }
         return Optional.empty();
     }
 
-    private Map<Integer, String> collectAttributeNames(Map<String, String> parameters) {
-        Map<Integer, String> attributeNames = parameters.entrySet().stream()
+    private Map<Integer, String> collectAttributeNames(Map<String, String> body) {
+        Map<Integer, String> attributeNames = body.entrySet().stream()
                 .filter(e -> e.getKey().matches("Attribute\\.[1-9]\\.Name"))
                 .collect(Collectors.toMap(
-                        e -> Integer.parseInt(e.getValue().replaceAll("[^1-9]", "")),
+                        e -> Integer.parseInt(e.getKey().replaceAll("[^1-9]", "")),
                         e -> e.getValue()
                 ));
         return attributeNames;
     }
 
-    private Map<Integer, String> collectAttributeValues(Map<String, String> parameters) {
-        Map<Integer, String> attributeValues = parameters.entrySet().stream()
+    private Map<Integer, String> collectAttributeValues(Map<String, String> body) {
+        Map<Integer, String> attributeValues = body.entrySet().stream()
                 .filter(e -> e.getKey().matches("Attribute\\.[1-9]\\.Value"))
                 .collect(Collectors.toMap(
-                        e -> Integer.parseInt(e.getValue().replaceAll("[^1-9]", "")),
+                        e -> Integer.parseInt(e.getKey().replaceAll("[^1-9]", "")),
                         e -> e.getValue()
                 ));
         return attributeValues;
     }
 
-    private Map<String, String> filterNonAttributeParameters(Map<String, String> parameters) {
-        Map<String, String> pureParameters = parameters.entrySet().stream()
+    private Map<String, String> filterNonAttributeParameters(Map<String, String> body) {
+        Map<String, String> pureParameters = body.entrySet().stream()
                 .filter(e -> !e.getKey().matches("Attribute\\.[1-9]\\.Name")
                         || !e.getKey().matches("Attribute\\.[1-9]\\.Value"))
                 .collect(Collectors.toMap(
@@ -90,10 +87,10 @@ public class ApiController {
         return pureParameters;
     }
 
-    private Object processAction(RequestParameter requestParameter, ServletWebRequest request) {
-        Object actionResult = switch (requestParameter.getActionName()) {
+    private Object processAction(@Valid RequestParameter body, ServletWebRequest request) {
+        Object actionResult = switch (body.getActionName()) {
             case CreateQueue:
-                yield queueService.createOne(requestParameter);
+                yield queueService.createOne(body);
             case ReceiveMessage:
                 yield null;
         };

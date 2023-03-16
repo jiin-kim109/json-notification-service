@@ -39,7 +39,7 @@ public class TestActionUtil {
         }
     }
 
-    public static String convertToQueryString(MultiValueMap<String, String> params) {
+    public static String convertToQueryString(Map<String, Object> params) {
         return Joiner.on("&").withKeyValueSeparator("=").join(params);
     }
 }
